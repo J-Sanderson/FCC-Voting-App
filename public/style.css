@@ -1,0 +1,7 @@
+/* styles */
+/* called by your view template */
+
+:root {
+  --background: #ffffff;
+  --text: #000000;
+}
