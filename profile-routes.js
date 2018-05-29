@@ -12,6 +12,8 @@ const authCheck = function(req, res, next) {
 }
 
 router.get("/", authCheck, function(req, res) {
+  //need to look at the polls database and see if there are any attached to this user
+  //pass these on below.
   res.render("profile", {user: req.user});
 });
 

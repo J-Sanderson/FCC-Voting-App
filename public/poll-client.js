@@ -1,18 +1,19 @@
 //grab poll create data and make a post request
 $(document).ready(function() {
   
-  $('form').on('submit', function() {
+  $('form').on('submit', function(e) {
+    //preventDefault();
     
-    var item = $('form input');
-    console.log(item);
+    var item = $('form input').serializeArray();
+    //console.log(item);
     
     $.ajax({
       type: "POST",
-      url: "/created",
-      data: item//,
-      //success: function(data) {
-        //location.reload();
-      //}
+      url: "/poll/create",
+      data: item,
+      success: function() {
+        console.log("success");
+      }
     });
     
   });
