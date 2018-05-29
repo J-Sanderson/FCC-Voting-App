@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title><%= user.username %></title>
+    <title>Create New Poll</title>
     <meta name="description" content="A cool thing made with Glitch">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
+    
   </head>
   <body>
     
@@ -25,23 +26,22 @@
     <% } %>
     
     <h1>
-      Welcome to your profile, <%= user.username %>
+      Create New Poll
     </h1>
     
-    <h2>
-      Your Polls
-    </h2>
-
-    <a href="/poll/create">
-      <button id="createbut">
-        Create New
-      </button>
-    </a>
-
-    
-    <p>
-      Poll list displays here.
-    </p>
+    <div id="createform">
+      <form>
+        <input type="text" name="pollname" placeholder="Name..." required />
+        <br/>
+        <button type="submit">
+          Create
+        </button>
+      </form>
+    </div>
     
   </body>
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="/poll-client.js"></script>
+  
 </html>

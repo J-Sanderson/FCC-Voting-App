@@ -1,6 +1,7 @@
 const express = require('express');
 const authRoutes = require('./auth-routes.js');
 const profileRoutes = require('./profile-routes.js');
+const pollRoutes = require('./poll-routes.js');
 const passportSetup = require('./passport-setup.js');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -28,10 +29,10 @@ mongoose.connect(process.env.MONGODB, function() {
 //setup routes
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
+app.use("/poll", pollRoutes);
 
 app.get("/", function(req, res) {
   res.render("home", {user: req.user});
-  //res.sendFile(__dirname + '/views/index.html');
 });
 
 app.listen(process.env.PORT, function() {
