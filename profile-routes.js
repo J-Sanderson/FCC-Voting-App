@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Poll = require('./poll-model.js');
 
 const authCheck = function(req, res, next) {
   if (!req.user) {
@@ -12,6 +13,10 @@ const authCheck = function(req, res, next) {
 
 router.get("/", authCheck, function(req, res) {
   res.render("profile", {user: req.user});
+});
+
+router.get("/create", authCheck, function(req, res) {
+  res.render("create", {user: req.user});
 });
 
 module.exports = router;
