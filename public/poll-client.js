@@ -2,10 +2,9 @@
 $(document).ready(function() {
   
   $('form').on('submit', function(e) {
-    //preventDefault();
+    //e.preventDefault();
     
-    var item = $('form input').serializeArray();
-    //console.log(item);
+    var item = $('form').serializeArray();
     
     $.ajax({
       type: "POST",

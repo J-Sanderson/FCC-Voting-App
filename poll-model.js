@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const pollSchema = new Schema({
   title: String,
-  creator: String//and some more stuff...
+  creator: String,
+  options: Array, //item and vote?
+  voted: Array //users who have voted
 });
 
 const Poll = mongoose.model("poll", pollSchema);
