@@ -1,3 +1,4 @@
+//for use when creating a poll
 //grab poll create data and make a post request
 $(document).ready(function() {
   
