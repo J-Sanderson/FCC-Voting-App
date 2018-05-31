@@ -13,8 +13,16 @@ const authCheck = function(req, res, next) {
   }
 }
 
+//note: the order these routes are listed here does seem to matter
+//"/" should therefore go last?
+
 router.get("/create", authCheck, function(req, res) {
-  res.render("create", {user: req.user});
+  //redirect if new poll has been created?
+  if (Object.keys(req.query).length == 0) { //no query string, return poll create page
+    res.render("create", {user: req.user});
+  } else {
+    res.redirect("/profile"); //would prefer to return to the poll page itself, though
+  }
 });
 
 router.post("/create", urlencodedParser, authCheck, function(req, res) {
@@ -22,20 +30,32 @@ router.post("/create", urlencodedParser, authCheck, function(req, res) {
   var optObj = {}; //this will hold the option/votes pairs
   //convert poll options to array
   var optArr = req.body.options.split(',').map(function(x){
-    return x = x.replace(/^\s*|\s*$/g, ''); //stript leading/trailing whitespace
+    return x = x.replace(/^\s*|\s*$/g, ''); //strip leading/trailing whitespace
   })
   optArr.forEach(function(x){
-    optObj[x] = 0;
-  }); //add to object
+    optObj[x] = 0; //add to object with zero votes to start
+  });
   //create new database record for this poll
   new Poll({
     title: req.body.pollname,
     creator: req.user.id, //mongodb created id for user
-    options: optObj, //actually an array with this inside
+    options: JSON.stringify(optObj),
     voted: [] //remains empty until someone votes later
-  }).save().then(function(newPoll){
-    console.log(newPoll); //do more than this...
-  });
+  }).save();
 });
+
+router.get("/:id", function(req, res) {
+  Poll.findById(req.params.id, function(err, poll){
+    res.render("pollview", {user: req.user, poll: poll}) //adjust this view for instances where the poll could not be found.
+  })
+});
+
+
+router.get("/", function(req, res) {
+  //get all polls
+  Poll.find(function(err, polls) {
+    res.render("allpolls", {user: req.user, polls: polls})
+  });
+})
 
 module.exports = router;

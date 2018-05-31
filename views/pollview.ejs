@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Create New Poll</title>
+    <title>View Poll</title>
     <meta name="description" content="A cool thing made with Glitch">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
@@ -20,28 +20,35 @@
       <% } %>
       <li><a href="/">Home</a></li>
       <li><a href="/profile">Profile</a></li>
+      <li><a href="/poll">Polls</a></li>
     </ul>
     <% if (user) {%>
       <img src="<%=user.thumbnail %>">
     <% } %>
     
     <h1>
-      Test thing.
+      <%= poll.title %>
     </h1>
     
-    <div id="createform">
-      <form>
-        <input type="text" name="pollname" placeholder="Name..." required />
-        <br/>
-        <button type="submit">
-          Create
+    <p>
+      <%= poll.options %>
+    </p>
+    
+    <% if (user) {
+      
+      if (user.id === poll.creator) { %>
+        
+        <button id="deletepoll">
+          Delete this poll
         </button>
-      </form>
-    </div>
+        
+      <% }
+      
+    } %>
     
   </body>
   
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script type="text/javascript" src="/poll-client.js"></script>
+  <script type="text/javascript" src="/poll-edit.js"></script>
   
 </html>

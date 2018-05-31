@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Poll = require('./poll-model.js');
+const mongoose = require('mongoose');
 
 const authCheck = function(req, res, next) {
   if (!req.user) {
@@ -12,9 +13,11 @@ const authCheck = function(req, res, next) {
 }
 
 router.get("/", authCheck, function(req, res) {
-  //need to look at the polls database and see if there are any attached to this user
-  //pass these on below.
-  res.render("profile", {user: req.user});
+  //look at the polls database and see if there are any attached to this user
+  Poll.find({creator: req.user.id}, function(err, polls) {
+    //pass these on below.
+    res.render("profile", {user: req.user, polls: polls});
+  });
 });
 
 router.get("/create", authCheck, function(req, res) {
