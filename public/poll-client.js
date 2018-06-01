@@ -1,5 +1,6 @@
 //for use when creating a poll
 //grab poll create data and make a post request
+
 $(document).ready(function() {
   
   $('form').on('submit', function(e) {
@@ -10,10 +11,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "/poll/create",
-      data: item,
-      success: function() {
-        console.log("success");
-      }
+      data: item
     });
     
   });

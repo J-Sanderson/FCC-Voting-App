@@ -16,6 +16,12 @@ const authCheck = function(req, res, next) {
 //note: the order these routes are listed here does seem to matter
 //"/" should therefore go last?
 
+router.get("/delete/:id", function(req, res) { //this is not ideal, do a delete request instead
+  Poll.findByIdAndRemove(req.params.id, function(err, poll) {
+    res.redirect("/profile");
+  });
+});
+
 router.get("/create", authCheck, function(req, res) {
   //redirect if new poll has been created?
   if (Object.keys(req.query).length == 0) { //no query string, return poll create page
@@ -49,7 +55,6 @@ router.get("/:id", function(req, res) {
     res.render("pollview", {user: req.user, poll: poll}) //adjust this view for instances where the poll could not be found.
   })
 });
-
 
 router.get("/", function(req, res) {
   //get all polls
