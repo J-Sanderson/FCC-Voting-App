@@ -38,11 +38,14 @@
       
       if (user.id === poll.creator) { %>
         
-    <a href="/poll/delete/<%= poll.id %>">
-        <button id="deletepoll">
+    <!--<a href="/poll/delete/<%= poll.id %>">-->
+        <!--<button id="deletepoll">-->
+    
+    <button class="deletepoll" id="<%= poll.id %>">
+    
           Delete this poll
         </button>
-       </a>
+       <!--</a>-->
         
       <% }
     } %>
