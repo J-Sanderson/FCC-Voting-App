@@ -34,18 +34,29 @@
       <%= poll.options %>
     </p>
     
+    <!-- Vote buttons -->
+    
+    <% 
+    var options = Object.keys(JSON.parse(poll.options));
+    
+    for (var i = 0; i < options.length; i++) { %>
+      
+      <button class="vote" id="<%=poll.id%>-<%=options[i]%>">
+        <%=options[i]%>
+        </button>
+    
+    <% } %>
+    
+    <!--Delete button only appears of the logged in user is also the poll creator -->
+    
     <% if (user) {
       
       if (user.id === poll.creator) { %>
-        
-    <!--<a href="/poll/delete/<%= poll.id %>">-->
-        <!--<button id="deletepoll">-->
-    
+     <br /><br />   
     <button class="deletepoll" id="<%= poll.id %>">
     
           Delete this poll
         </button>
-       <!--</a>-->
         
       <% }
     } %>

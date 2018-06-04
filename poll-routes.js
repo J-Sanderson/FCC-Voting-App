@@ -58,6 +58,23 @@ router.get("/:id", function(req, res) {
   })
 });
 
+router.post("/:id", urlencodedParser, function(req, res) {
+  Poll.findById(req.params.id, function(err, poll){
+    //update details of poll
+    //get name of vote
+    var votedFor = Object.keys(req.body)[0];
+    //parse out option/vote pairs
+    var options = JSON.parse(poll.options);
+    //iterate vote number
+    options[votedFor] ++;
+    //update poll object
+    poll.options = JSON.stringify(options);
+    poll.save(function(err, updatedPoll) {
+      //console.log(updatedPoll);
+    });
+  });
+});
+
 router.delete("/:pollId", function(req, res){
   res.redirect("/");
   Poll.findByIdAndRemove(req.params.pollId, function(err, poll) {
