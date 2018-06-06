@@ -34,16 +34,25 @@
       <%= poll.options %>
     </p>
     
-    <!-- Vote buttons -->
+    <!-- Vote buttons - only render if user has not voted or is not logged in-->
     
     <% 
     var options = Object.keys(JSON.parse(poll.options));
+    var whoVoted = poll.voted;
     
-    for (var i = 0; i < options.length; i++) { %>
+    if (!user || whoVoted.indexOf(user.id) === -1) {
+    
+      for (var i = 0; i < options.length; i++) { %>
       
-      <button class="vote" id="<%=poll.id%>-<%=options[i]%>">
-        <%=options[i]%>
+        <button class="vote" id="<%=poll.id%>-<%=options[i]%>">
+          <%=options[i]%>
         </button>
+    
+    <% } } else { %>
+    
+      <p>
+        You have already voted on this poll!
+      </p>
     
     <% } %>
     
