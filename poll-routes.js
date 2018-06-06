@@ -60,19 +60,28 @@ router.get("/:id", function(req, res) {
 
 router.post("/:id", urlencodedParser, function(req, res) {
   Poll.findById(req.params.id, function(err, poll){
-    //update details of poll
-    //get name of vote
-    var votedFor = Object.keys(req.body)[0];
-    //parse out option/vote pairs
-    var options = JSON.parse(poll.options);
-    //iterate vote number
-    options[votedFor] ++;
-    //update poll object
-    poll.options = JSON.stringify(options);
-    poll.save(function(err, updatedPoll) {
-      //console.log(updatedPoll);
-    });
+   //have we already voted?
+    if (!req.user || poll.voted.indexOf(req.user.id) === -1) { //user has not voted or is not logged in
+      //update details of poll
+      //get name of vote
+      var votedFor = Object.keys(req.body)[0];
+      //parse out option/vote pairs
+      var options = JSON.parse(poll.options);
+      //iterate vote number
+      options[votedFor] ++;
+      //update poll object
+      poll.options = JSON.stringify(options);
+      //update who voted if user is logged in
+      if (req.user) {
+        poll.voted.push(req.user.id);
+      }
+      poll.save();
+      res.redirect("/");
+    } else { //user has voted
+      console.log("Error - user has already voted");
+    }
   });
+    
 });
 
 router.delete("/:pollId", function(req, res){
