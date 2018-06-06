@@ -49,4 +49,19 @@ $(document).ready(function() {
     
   });
   
+  //submit new option
+  $('form').on('submit', function(e) {
+    
+    var item = $('#newoption').val();
+    var pollId = $(this).attr("id").split("-")[1];
+    
+    $.ajax({
+      type: "POST",
+      url: "/poll/add/" + pollId,
+      data: item,
+      dataType: "text"
+    });
+    
+  });
+  
 });

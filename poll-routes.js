@@ -44,6 +44,27 @@ router.post("/create", urlencodedParser, authCheck, function(req, res) {
   }).save();
 });
 
+router.post("/add/:id", urlencodedParser, authCheck, function(req, res) {
+  Poll.findById(req.params.id, function(err, poll){
+    if (err) {
+      res.send("An error has occured")
+    } else {
+      if (poll) {
+        //parse out option/vote pairs
+        var options = JSON.parse(poll.options);
+        //add option to array with zero votes to start
+        options[Object.keys(req.body)[0]] = 0;
+        //update poll object
+        poll.options = JSON.stringify(options);
+        poll.save();
+        res.redirect("/");
+      } else {
+        res.send("This poll does not exist");
+      }
+    }
+  });
+});
+
 router.get("/:id", function(req, res) {
   Poll.findById(req.params.id, function(err, poll){
     if (err) {
