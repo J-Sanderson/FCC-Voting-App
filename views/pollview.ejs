@@ -54,9 +54,25 @@
         You have already voted on this poll!
       </p>
     
-    <% } %>
+    <% } 
+      
+      if (user) { %>
+        
+      <!--Display new option form if user is logged in -->
     
-    <!--Delete button only appears of the logged in user is also the poll creator -->
+        <p>
+          Add a new option:
+        </p>
+    <form id="newoption-<%=poll.id%>">
+      <input type="text" id="newoption">
+      <button type="submit">
+        Submit
+      </button>
+    </form>
+        
+      <% } %>
+    
+    <!--Delete button only appears if the logged in user is also the poll creator -->
     
     <% if (user) {
       
