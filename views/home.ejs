@@ -11,6 +11,8 @@
   </head>
   <body>
     
+    <header>
+    <nav>
     <ul>
       <% if (user) {%>
       <li><a href="/auth/logout">Logout</a></li>
@@ -21,10 +23,13 @@
       <li><a href="/profile">Profile</a></li>
       <li><a href="/poll">Polls</a></li>
     </ul>
-    <% if (user) {%>
+      </nav>
+      <% if (user) {%>
       <img src="<%=user.thumbnail %>">
     <% } %>
+      </header>
     
+    <main>
     <h1>
       Voting App
     </h1>
@@ -32,6 +37,7 @@
     <p>
       To be worked upon...
     </p>
+      </main>
     
   </body>
 </html>

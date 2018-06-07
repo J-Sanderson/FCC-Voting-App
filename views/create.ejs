@@ -12,6 +12,8 @@
   </head>
   <body>
     
+    <header>
+    <nav>
     <ul>
       <% if (user) {%>
       <li><a href="/auth/logout">Logout</a></li>
@@ -22,15 +24,18 @@
       <li><a href="/profile">Profile</a></li>
       <li><a href="/poll">Polls</a></li>
     </ul>
-    <% if (user) {%>
+      </nav>
+      <% if (user) {%>
       <img src="<%=user.thumbnail %>">
     <% } %>
+      </header>
     
+    <main>
     <h1>
       Create New Poll
     </h1>
     
-    <div id="createform">
+    <div id="create-poll">
       <form>
         <input type="text" name="pollname" placeholder="Name..." required />
         <br/>
@@ -38,11 +43,13 @@
         <br/>
         <textarea id="options" name = "options" required></textarea>
         <br/>
-        <button type="submit">
+        <button type="submit" id="createbut">
           Create
         </button>
       </form>
     </div>
+      
+      </main>
     
   </body>
   
