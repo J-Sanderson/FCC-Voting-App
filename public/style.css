@@ -75,6 +75,11 @@ h1 {
   margin: auto;
 }
 
+#poll-results {
+  list-style-type: none;
+  padding: 0px;
+}
+
 /*buttons*/
 button {
   border-radius: 5px;

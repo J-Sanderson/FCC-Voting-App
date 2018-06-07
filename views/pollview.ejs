@@ -37,14 +37,28 @@
     
       <div id="view-poll">
         
-    <p>
-      <%= poll.options %>
-    </p>
-    
-    <!-- Vote buttons - only render if user has not voted or is not logged in-->
-    
-    <% 
-    var options = Object.keys(JSON.parse(poll.options));
+        <canvas id="chart" width="300" height="200"></canvas>
+        
+        <ul id="poll-results">
+
+        
+    <%
+        
+        
+        var pollObj = JSON.parse(poll.options);
+        var options = Object.keys(pollObj);
+        
+        for (var i = 0; i < options.length; i++) { %>
+          
+          <li id="<%=options[i]%>"><%=options[i]%>: <%= pollObj[options[i]] %></li>
+          
+       <% } %>
+        </ul>
+        
+        
+    <%
+    //Vote buttons - only render if user has not voted or is not logged in
+
     var whoVoted = poll.voted;
     
     if (!user || whoVoted.indexOf(user.id) === -1) { %>
@@ -114,6 +128,8 @@
   </body>
   
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
   <script type="text/javascript" src="/poll-edit.js"></script>
+  <script type="text/javascript" src="/draw-chart.js"></script>
   
 </html>
