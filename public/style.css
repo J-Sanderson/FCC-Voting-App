@@ -3,5 +3,104 @@
 
 :root {
   --background: #ffffff;
+  --nav: #c0c0c0;
+  --poll-list: #c0c0c0;
   --text: #000000;
+  /*buttons*/
+  --warning: #ff0000;
+  --create: #00ff00;
+  --vote: #0000ff;
+}
+
+html, body {
+  margin: 0;
+}
+
+/* nav bar */
+
+header {
+  background-color: var(--nav);
+  border-bottom: 4px solid var(--text);
+  position: fixed;
+  display: flex;
+  width: 100%;
+  z-index: 10;
+  height: 50px;
+}
+
+header img {
+  flex-basis: auto;
+}
+
+nav {
+  display: flex;
+  flex-grow: 1;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  line-height: 50px;
+}
+
+nav ul li:hover {
+  background-color: var(--background)
+}
+
+nav a {
+  padding: 20px;
+}
+
+/*main*/
+
+main {
+  padding-top: 50px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#poll-list, #create-poll, #view-poll {
+  background-color: var(--poll-list);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 700px;
+  margin: auto;
+}
+
+/*buttons*/
+button {
+  border-radius: 5px;
+  padding: 5px;
+  border: 0px;
+  cursor: pointer;
+}
+
+.deletepoll {
+  background-color: var(--warning);
+}
+
+#createbut, #submitbut {
+  background-color: var(--create);
+}
+
+.vote {
+  background-color: var(--vote);
+}
+
+/*smaller screens*/
+
+@media screen and (max-width: 700px) {
+  
+  #poll-list, #create-poll, #view-poll {
+    width: 90%;
+  }
+  
 }

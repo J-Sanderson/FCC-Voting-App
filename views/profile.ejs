@@ -11,6 +11,8 @@
   </head>
   <body>
     
+    <header>
+    <nav>
     <ul>
       <% if (user) {%>
       <li><a href="/auth/logout">Logout</a></li>
@@ -21,17 +23,24 @@
       <li><a href="/profile">Profile</a></li>
       <li><a href="/poll">Polls</a></li>
     </ul>
-    <% if (user) {%>
+      </nav>
+      <% if (user) {%>
       <img src="<%=user.thumbnail %>">
     <% } %>
+      </header>
     
+    <main>
     <h1>
-      Welcome to your profile, <%= user.username %>
+      Welcome to your poll list, <%= user.username %>
     </h1>
+      
+      <div id="poll-list">
     
     <h2>
       Your Polls
     </h2>
+        
+        <!--include a "you haven't created any yet!" message if that is the case -->
 
     <a href="/poll/create">
       <button id="createbut">
@@ -40,6 +49,8 @@
     </a>
     
     <% for (var i = polls.length-1; i >= 0; i--) { %>
+        
+        <hr>
     
     <h3>
       <a href="https://jsanderson-voting.glitch.me/poll/<%= polls[i].id %> ">
@@ -50,8 +61,13 @@
     <p>
       <%= polls[i].options %>
     </p>
+        
     
     <% } %>
+        
+        </div>
+        
+      </main>
     
   </body>
 </html>
