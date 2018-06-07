@@ -1,26 +1,40 @@
 /* styles */
 /* called by your view template */
+/*http://paletton.com/#uid=23n0u0k7UUa3cZA5wXlaiQ5cFL3*/
 
 :root {
-  --background: #ffffff;
-  --nav: #c0c0c0;
-  --poll-list: #c0c0c0;
-  --text: #000000;
+  --background: #B2DFEA;
+  --nav: #FFCC9A;
+  --nav-hover: #FFF2E6;
+  --poll-list: #E2F6FB;
+  --shadow: #7FC0CF;
+  /*text*/
+  --header: #462403;
+  --text: #011B21;
+  --link: #5C858F;
   /*buttons*/
-  --warning: #ff0000;
-  --create: #00ff00;
-  --vote: #0000ff;
+  --warning: #F795A6;
+  --create: #ABED8F;
+  --vote: #84B1D1;
+  --form: #F2FCFE;
 }
 
 html, body {
   margin: 0;
+  background-color: var(--background);
+  font-family: "Open Sans", sans-serif;
+}
+
+a:link, a:visited {
+  color: var(--link);
+  text-decoration: none;
 }
 
 /* nav bar */
 
 header {
   background-color: var(--nav);
-  border-bottom: 4px solid var(--text);
+  border-bottom: 4px solid var(--header);
   position: fixed;
   display: flex;
   width: 100%;
@@ -49,7 +63,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-  background-color: var(--background)
+  background-color: var(--nav-hover)
 }
 
 nav a {
@@ -60,19 +74,27 @@ nav a {
 
 main {
   padding-top: 50px;
+  text-align: center;
+}
+
+main p a:link, main p a:visited {
+  border-bottom: 1px dotted var(--link);
 }
 
 h1 {
-  text-align: center;
+  color: var(--header);
 }
 
 #poll-list, #create-poll, #view-poll {
   background-color: var(--poll-list);
+  box-shadow: 10px 10px 10px var(--shadow);
   border-radius: 10px;
   padding: 10px;
   text-align: center;
   width: 700px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
 }
 
 #poll-results {
@@ -80,11 +102,18 @@ h1 {
   padding: 0px;
 }
 
+#sharelink {
+  border: 1px solid var(--text);
+  border-radius: 5px;
+  padding: 5px;
+  background-color: var(--form);
+}
+
 /*buttons*/
 button {
   border-radius: 5px;
   padding: 5px;
-  border: 0px;
+  border: 1px solid var(--text);
   cursor: pointer;
 }
 

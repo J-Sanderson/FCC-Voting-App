@@ -19,7 +19,9 @@ var chart = new Chart(ctx, {
         datasets: [{
             label: 'Votes',
             data: data,
-            backgroundColor: 'rgba(50, 50, 50, 0.9)'
+            backgroundColor: 'rgba(236, 182, 128, 1)',
+            borderColor: 'rgba(69, 38, 8, 0.5)',
+            borderWidth: 1
         }]
     },
     options: {
